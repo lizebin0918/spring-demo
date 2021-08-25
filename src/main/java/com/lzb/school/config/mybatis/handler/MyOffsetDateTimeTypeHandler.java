@@ -27,7 +27,6 @@ public class MyOffsetDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> 
 
     @Override
     public LocalDateTime getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        System.out.println("columnName:" + columnName);
         return parse(rs.getObject(columnName, OffsetDateTime.class));
     }
 
@@ -44,9 +43,6 @@ public class MyOffsetDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> 
     private LocalDateTime parse(Object value) {
         if (Objects.isNull(value)) {
             return null;
-        }
-        if (value instanceof LocalDateTime) {
-            return (LocalDateTime) value;
         }
         if (value instanceof OffsetDateTime) {
             return ((OffsetDateTime) value).toLocalDateTime();

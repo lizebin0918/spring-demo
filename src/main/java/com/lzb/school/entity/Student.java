@@ -70,6 +70,8 @@ public class Student {
 
     /**
      * 注册时间（带时区）
+     * 这个才是带上当前时区的时间：
+     * registerDateTime.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
      */
     private OffsetDateTime registerDateTime;
 
