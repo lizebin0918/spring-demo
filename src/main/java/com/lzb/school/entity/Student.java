@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * <p>
@@ -70,6 +71,6 @@ public class Student {
     /**
      * 注册时间（带时区）
      */
-    private LocalDateTime registerDateTime;
+    private OffsetDateTime registerDateTime;
 
 }
