@@ -1,21 +1,10 @@
 package com.lzb.school.config.mybatis.handler;
 
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedJdbcTypes;
-
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.Objects;
-
 /**
  * 只是为了适配带时区的Timestamp转LocalDateTime报错的问题，
  * 但是带时区的Timestamp对应的类型应该是OffsetDateTime，如果字段类型声明OffsetDateTime，不会进来
  */
+/*
 @MappedJdbcTypes({JdbcType.TIMESTAMP, JdbcType.TIMESTAMP_WITH_TIMEZONE})
 public class MyOffsetDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 
@@ -49,4 +38,4 @@ public class MyOffsetDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> 
         }
         return null;
     }
-}
+}*/
