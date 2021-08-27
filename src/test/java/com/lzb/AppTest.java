@@ -1,5 +1,6 @@
 package com.lzb;
 
+import com.alibaba.fastjson.JSON;
 import com.lzb.school.entity.Student;
 import com.lzb.school.mapper.StudentMapper;
 import com.lzb.school.service.IStudentService;
@@ -12,8 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Unit test for simple App.
@@ -51,7 +50,7 @@ public class AppTest
         // System.out.println(JSON.toJSONString(studentMapper.selectMultipleTime()));
         // System.out.println(JSON.toJSONString(studentMapper.updateMultiple()));
         CountDownLatch latch = new CountDownLatch(2);
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        /*ExecutorService executorService = Executors.newFixedThreadPool(2);
         executorService.execute(() -> {
             try {
                 studentMapper.testDeadLock1();
@@ -67,6 +66,8 @@ public class AppTest
             }
         });
         latch.await();
-        System.out.println("done");
+        System.out.println("done");*/
+
+        System.out.println(JSON.toJSONString(studentMapper.listAll()));
     }
 }
