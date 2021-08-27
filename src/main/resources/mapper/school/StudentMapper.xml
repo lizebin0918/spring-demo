@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lzb.school.mapper.StudentMapper">
 
+    <!--{"a":1}-->
+    <select id="selectMultipleTime" resultType="hashmap">
+        select 1 as a;
+        select 2 as b;
+        select 3 as c;
+    </select>
+
+    <!--返回:0-->
+    <update id = "updateMultiple">
+        <!--数据不存在存在-->
+        update student set name = 'a' where id = -1;
+        <!--数据存在-->
+        update student set name = concat('test:', name) where id = 8;
+    </update>
+
+    <!--死锁测试，结果：会被pg自动回滚-->
+    <update id="testDeadLock1">
+        update student set name = name where id = 7;
+        select pg_sleep(1);
+        update student set name = name where id = 8;
+    </update>
+
+    <update id="testDeadLock2">
+        update student set name = name where id = 8;
+        select pg_sleep(1);
+        update student set name = name where id = 7;
+    </update>
+
 </mapper>
