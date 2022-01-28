@@ -49,7 +49,7 @@ public class StudentService {
     /**
      * 可重复读
      */
-    @Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
     public void save1() {
 
         Student student = new Student();
@@ -62,7 +62,25 @@ public class StudentService {
         student.setType(TYPE_ENUM.HIGH);
         studentService.saveOrUpdate(student);
 
+        System.out.println("数量-1:" + classService.select());
+
         classService.save1(student.getId());
+
+        System.out.println("数量-2:" + classService.select());
+
+    }
+
+    /**
+     * 可重复读
+     */
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
+    public void save3() {
+
+        System.out.println("数量-1:" + classService.select());
+
+        classService.save1(1);
+
+        System.out.println("数量-2:" + classService.select());
 
     }
 

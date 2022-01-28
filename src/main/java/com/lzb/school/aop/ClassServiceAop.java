@@ -1,10 +1,12 @@
 package com.lzb.school.aop;
 
 import com.alibaba.fastjson.JSON;
+import com.lzb.school.domain.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,9 @@ import java.util.Objects;
 @Slf4j
 @Order(1)
 public class ClassServiceAop {
+
+    @Autowired
+    private ClassService classService;
 
     @AfterReturning(value = "execution(* com.lzb.school.domain.service.ClassService.save(..))", returning = "retVal")
     public void saveClass(JoinPoint point, Object retVal) {
@@ -41,16 +46,7 @@ public class ClassServiceAop {
     @AfterReturning(value = "execution(* com.lzb.school.domain.service.ClassService.save1(..))", returning = "retVal")
     public void saveClass1(JoinPoint point, Object retVal) {
 
-        System.out.println("班级id:");
-        System.out.println(JSON.toJSONString(retVal));
-
-        Object[] args = point.getArgs();
-        String studentId = Objects.toString(args[0]);
-
-        System.out.println("studentId:" + studentId);
-
-        int i = 1 / 0;
-
+        System.out.println("数量-3:" + classService.select());
 
     }
 }

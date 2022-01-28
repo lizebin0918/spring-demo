@@ -1,5 +1,6 @@
 package com.lzb.school.domain.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.lzb.school.entity.Class;
 import com.lzb.school.service.IClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,23 @@ public class ClassService {
     /**
      * 读已提交:如果切面抛异常，并不会回滚!!!!
      */
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    @Transactional(rollbackFor = Exception.class,
+            propagation = Propagation.REQUIRES_NEW,
+            isolation = Isolation.READ_COMMITTED)
     public int save1(int studentId) {
 
         Class klass = new Class();
-        klass.setName("2班");
+        klass.setName("3班");
         classService.saveOrUpdate(klass);
 
         return klass.getId();
 
+    }
+
+    public int select() {
+        LambdaQueryWrapper<Class> query = new LambdaQueryWrapper<>();
+        query.eq(Class::getName, "3班");
+        return classService.count(query);
     }
 
 }

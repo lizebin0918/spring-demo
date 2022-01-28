@@ -20,6 +20,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: statement
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-enums-package: com.**.enums
   #type-handlers-package: com.**.mybatis.handler
