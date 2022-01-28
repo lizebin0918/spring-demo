@@ -1,7 +1,9 @@
 package com.lzb.school.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,6 +20,12 @@ import java.time.LocalDateTime;
 public class Class {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键
+     */
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 班级名称
