@@ -1,6 +1,7 @@
 package com.lzb;
 
 import com.alibaba.fastjson.JSON;
+import com.lzb.school.domain.service.StudentService;
 import com.lzb.school.entity.Student;
 import com.lzb.school.mapper.StudentMapper;
 import com.lzb.school.service.IStudentService;
@@ -27,6 +28,9 @@ public class AppTest
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private StudentService domainStudentService;
 
     /**
      * Rigorous Test :-)
@@ -69,5 +73,13 @@ public class AppTest
         System.out.println("done");*/
 
         System.out.println(JSON.toJSONString(studentMapper.listAll()));
+    }
+
+    @Test
+    public void test_save() {
+        // 切面事务抛异常，导致上层事务回滚
+        // domainStudentService.save();
+        domainStudentService.save1();
+        System.out.println("done");
     }
 }

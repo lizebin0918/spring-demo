@@ -1,9 +1,6 @@
 package com.lzb.school.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import com.lzb.school.entity.enums.TYPE_ENUM;
 import lombok.Data;
 
@@ -33,6 +30,7 @@ public class Student {
     /**
      * 姓名
      */
+    // @TableField(insertStrategy = FieldStrategy.IGNORED, updateStrategy = FieldStrategy.IGNORED)
     private String name;
 
     /**
@@ -74,5 +72,12 @@ public class Student {
      * registerDateTime.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
      */
     private OffsetDateTime registerDateTime;
+
+    /**
+     * 年龄
+     */
+    // 默认插入非空字段，加上注解表示忽略
+    @TableField(insertStrategy = FieldStrategy.IGNORED, updateStrategy = FieldStrategy.IGNORED)
+    private Integer age;
 
 }
